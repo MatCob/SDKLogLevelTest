@@ -1,0 +1,10 @@
+---
+applications:
+- name: SalesReasonForRejection
+  random-route: true
+  memory: 256M
+  buildpacks:
+  - nodejs_buildpack
+  no-route: true
+  command: npm run-script start
+  health-check-type: process
