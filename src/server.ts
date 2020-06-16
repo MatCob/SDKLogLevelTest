@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import * as schedule from 'node-schedule';
 import { DestinationNameAndJwt, WriteResponses, ErrorResponse} from '@sap/cloud-sdk-core';
-import { Yy1_SalesDocCreditBlockApi as CreditBlockAPI } from "./external/lib/CreditBlockAPI";
+import { Yy1_SalesDocCreditBlockApi as CreditBlockAPI } from "./external/lib/CreditBlockAPI"; //I removed the edmx and stuff from the project
 import { batch as SOBatch, changeset as SOChangeset, SalesOrderItem } from "@sap/cloud-sdk-vdm-sales-order-service";
 import { batch as SOWCBatch, changeset as SOWCChangeset, SalesOrderWithoutChargeItem } from "@sap/cloud-sdk-vdm-sales-order-without-charge-service";
 import { setLogLevel, getLogger} from '@sap/cloud-sdk-util';
@@ -19,6 +19,7 @@ const DEST_S4HCLOUD: DestinationNameAndJwt = {
     destinationName: 'S4HCLOUD'
 };
 
+//just query some custom CDS we have on S/4HANA Cloud
 async function getSalesDocumentItemsToModify(): Promise<CreditBlockAPI[]> {
     try {
         return CreditBlockAPI.requestBuilder().getAll().execute(DEST_S4HCLOUD);
